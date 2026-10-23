@@ -41,14 +41,14 @@
 ## 🛠️ Cara Instalasi & Menjalankan dari Source Code
 
 ### 1. Unduh Installer Siap Pakai
-Unduh file installer `.exe` terbaru melalui halaman [**GitHub Releases**](https://github.com/vestiapani/mangnotch/releases).
+Unduh file installer `.exe` terbaru melalui halaman [**GitHub Releases**](https://github.com/MANG-CODER/MangNotch/releases).
 
 ### 2. Build Sendiri dari Source Code
 Pastikan di perangkatmu sudah terinstal **Node.js** dan **Rust (`rustup`)**.
 
-```bash
+```
 # 1. Clone repositori
-git clone [https://github.com/vestiapani/mangnotch.git](https://github.com/vestiapani/mangnotch.git)
+git clone [https://github.com/MANG-CODER/MangNotch.git](https://github.com/MANG-CODER/MangNotch.git)
 cd mangnotch
 
 # 2. Instal dependensi CLI
@@ -59,6 +59,7 @@ npm run tauri dev
 
 # 4. Build menjadi file Installer (.exe / .msi)
 npm run tauri build
+```
 
 👤 Pengembang
 Dikembangkan oleh Vestiapani sebagai bagian dari ekosistem kreatif MangNime.
