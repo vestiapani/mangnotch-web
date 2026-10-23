@@ -75,5 +75,3 @@ Dikembangkan oleh Vestiapani sebagai bagian dari ekosistem kreatif MangNime.
 1. Buat folder baru untuk web kamu, masukkan `index.html`, `style.css`, `script.js`, `README.md`, dan salin `logo.png` dari `src-tauri/icons/logo.png`[cite: 3] ke `assets/logo.png`.
 2. Klik dua kali `index.html` atau gunakan ekstensi **Live Server** di VS Code untuk mengetes simulatornya secara langsung.
 3. Setelah kamu *push* ke GitHub, pastikan URL di tombol **Landing Page** dan **GitHub Repo** pada file `src/control.html` aplikasi MangNotch kamu sudah sesuai dengan URL repositori GitHub milikmu.
-
-<FollowUp label="Sudah siap kita lanjut ke tahap Build Installer (.exe / .msix) untuk rilis GitHub & Microsoft Store?" query="Landing page sudah siap! Sekarang tolong pandu langkah demi langkah cara build MangNotch menjadi file installer .exe dan .msix untuk rilis GitHub dan Microsoft Store."/>
