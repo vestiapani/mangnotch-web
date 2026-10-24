@@ -620,44 +620,4 @@ document.addEventListener('click', (e) => {
   if(!e.target.closest('.custom-select')) {
     document.querySelectorAll('.custom-select.open').forEach(cs => cs.classList.remove('open'));
   }
-});// ================= 6. CUSTOM SELECT LOGIC (Live Demo Dropdown) =================
-function toggleCS(listId) {
-  // Tutup dropdown lain yang sedang terbuka
-  document.querySelectorAll('.custom-select').forEach(cs => {
-    if(!cs.querySelector('#' + listId)) {
-      cs.classList.remove('open');
-    }
-  });
-  
-  const list = document.getElementById(listId);
-  if(list) {
-    list.parentElement.classList.toggle('open');
-  }
-}
-
-function selectCS(type, val, text, event) {
-  let wrapperId = type === 'mascot' ? 'mascotCustomSelect' : 'themeCustomSelect';
-  let wrapper = document.getElementById(wrapperId);
-  
-  // Update Teks Label & State
-  wrapper.querySelector('.cs-val').textContent = text;
-  wrapper.dataset.value = val;
-  wrapper.classList.remove('open');
-
-  // Hapus class active dari list sebelumnya dan pindahkan ke yang di-klik
-  wrapper.querySelectorAll('.cs-opt').forEach(opt => opt.classList.remove('active'));
-  if (event) {
-    event.target.classList.add('active');
-  }
-
-  // Panggil fungsi asli MangNotch
-  if(type === 'mascot') changeSimMascot(val);
-  if(type === 'theme') changeSimTheme(val);
-}
-
-// Menutup dropdown jika user klik di luar area
-document.addEventListener('click', (e) => {
-  if(!e.target.closest('.custom-select')) {
-    document.querySelectorAll('.custom-select.open').forEach(cs => cs.classList.remove('open'));
-  }
 });
