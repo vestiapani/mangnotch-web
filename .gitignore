@@ -1,2 +1,6 @@
 public/MangNotch_1.0.0_x64-setup.exe
 public/MangNotch_1.0.0_x64_en-US.msi
+
+# Installer Windows — jangan push ke repository
+public/MangNotch_*-setup.exe
+public/MangNotch_*.msi

@@ -159,8 +159,6 @@ body {
   background: #08060c; border-radius: 0 0 var(--r) var(--r);
   transition: width .56s var(--spring), height .56s var(--spring), border-radius .4s ease;
   color: #f6f2f8; font-size: 13px; line-height: 1; user-select: none;
-  
-  /* Tambahan agar elemen tidak menyusut paksa dan memotong isi notch */
   flex-shrink: 0; 
 }
 .mn::before, .mn::after {
@@ -212,7 +210,7 @@ body {
   mask: linear-gradient(to top, #000, rgba(0,0,0,.55) 35%, rgba(0,0,0,.12) 75%, transparent);
 }
 .l-lyrics .ambient, .l-idle-lyrics .ambient {
-  background: var(--lyr-glow); height: 88%; opacity: 0.95; transition: background 0.8s ease;
+  background: var(--lyr-glow); height: 88%; opacity: 0.95; transition:  0.8s ease;
 }
 .min-pill {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
@@ -297,6 +295,60 @@ body {
 }
 @keyframes nekoGroove { from { transform: translateY(1px) scale(0.96); } to { transform: translateY(-1.5px) scale(1.05); } }
 
+/* Mochi mascot — synced with the current MangNotch app */
+.mochi-stage {
+  position: relative; width: 44px; height: 25px;
+  display: flex; align-items: flex-end; justify-content: center;
+  transform-origin: 50% 100%;
+  animation: mochiHop 2.9s ease-in-out infinite;
+}
+.mochi-body {
+  position: relative; width: 34px; height: 21px;
+  border-radius: 52% 52% 44% 44% / 62% 62% 38% 38%;
+  background: radial-gradient(circle at 34% 28%, #fff 0%, var(--c2) 58%, var(--c1) 135%);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--c1) 55%, transparent), inset 0 -3px 5px rgba(255,140,175,.28);
+  transform-origin: 50% 100%;
+  transform: scale(calc(1 + var(--beat, 0) * .12), calc(1 - var(--beat, 0) * .1));
+  transition: transform .08s linear;
+}
+.mochi-face { position: absolute; inset: 0; animation: mochiLook 7s ease-in-out infinite; }
+.mochi-eye {
+  position: absolute; top: 7px; width: 4px; height: 6px; border-radius: 50%;
+  background: #2a1c33; transform-origin: center; animation: nekoBlinkLive 4.4s infinite;
+}
+.mochi-eye.l { left: 9px; }
+.mochi-eye.r { right: 9px; }
+.mochi-blush {
+  position: absolute; top: 12px; width: 6px; height: 3px; border-radius: 50%;
+  background: #ff8fb0; opacity: .6; filter: blur(.4px);
+}
+.mochi-blush.l { left: 3px; }
+.mochi-blush.r { right: 3px; }
+.mochi-mouth {
+  position: absolute; left: 50%; top: 12px; width: 5px; height: 3px; margin-left: -2.5px;
+  border-bottom: 1.5px solid #2a1c33; border-radius: 0 0 5px 5px;
+  transition: all .2s ease;
+}
+.mochi-stage.happy .mochi-eye {
+  height: 3px; width: 5px; background: transparent; animation: none;
+  border-top: 2px solid #2a1c33; border-radius: 50% 50% 0 0;
+}
+.mochi-stage.happy .mochi-mouth {
+  width: 6px; height: 4px; margin-left: -3px; border: 0; background: #c94d78;
+}
+@keyframes mochiHop {
+  0%, 100% { transform: translateY(0) scale(1.04, .94); }
+  45% { transform: translateY(-2.5px) scale(.96, 1.05); }
+  62% { transform: translateY(0) scale(1.05, .93); }
+  78% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes mochiLook {
+  0%, 20%, 100% { transform: translateX(0); }
+  30%, 42% { transform: translateX(-2.5px); }
+  55%, 66% { transform: translateX(0); }
+  74%, 86% { transform: translateX(2.5px); }
+}
+
 .visor-bar { width: 88px; height: 4px; border-radius: 4px; background: rgba(255,255,255,.12); overflow: hidden; position: relative; }
 .visor-Dot { width: 32px; height: 100%; border-radius: 4px; background: var(--c1); box-shadow: 0 0 10px var(--c1); animation: scan 1.4s ease-in-out infinite alternate; }
 @keyframes scan { from { transform: translateX(-4px); } to { transform: translateX(60px); } }
@@ -319,13 +371,13 @@ body {
 
 .arw {
   width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,.18);
-  display: grid; place-items: center; cursor: pointer; z-index: 10; transition: background .2s, transform .2s;
+  display: grid; place-items: center; cursor: pointer; z-index: 10; transition:  .2s, transform .2s;
 }
 .arw:hover { background: rgba(255,255,255,.35); transform: translate(-50%, -50%) scale(1.08); }
 .arw svg { width: 9px; height: 9px; stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
 .dots { left: 210px; top: 132px; transform: translate(-50%, -50%); display: flex; gap: 5px; align-items: center; z-index: 10; }
-.dots i { width: 4px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.35); cursor: pointer; transition: width .35s var(--spring), background .25s; }
+.dots i { width: 4px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.35); cursor: pointer; transition: width .35s var(--spring),  .25s; }
 .mn[data-s="music"] .dots i:nth-child(1),
 .mn[data-s="pomo"]  .dots i:nth-child(2),
 .mn[data-s="water"] .dots i:nth-child(3),
@@ -362,7 +414,7 @@ svg.ctl:hover { transform: translate(-50%, -50%) scale(1.15); }
 .pomo-wrap { left: 82px; top: 76px; width: 72px; height: 72px; transform: translate(-50%, -50%); display: grid; place-items: center; }
 .pill {
   height: 27px; border-radius: 14px; background: rgba(255,255,255,.11);
-  display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background .2s;
+  display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 11.5px; font-weight: 600; cursor: pointer; transition:  .2s;
 }
 .pill:hover { background: rgba(255,255,255,.22); }
 .pill svg { width: 13px; height: 13px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -382,7 +434,7 @@ svg.ctl:hover { transform: translate(-50%, -50%) scale(1.15); }
 @keyframes slosh { from { transform: translateX(-6px) rotate(-1deg); } to { transform: translateX(6px) rotate(1deg); } }
 .wtank-info { position: relative; z-index: 2; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
 .cups-row { display: flex; gap: 4px; flex-wrap: wrap; }
-.cup-dot { width: 11px; height: 14px; border-radius: 2px 2px 5px 5px; border: 1.4px solid rgba(255,255,255,.4); transition: background .3s, border-color .3s; }
+.cup-dot { width: 11px; height: 14px; border-radius: 2px 2px 5px 5px; border: 1.4px solid rgba(255,255,255,.4); transition:  .3s, border-color .3s; }
 .cup-dot.filled { background: #A2E4F5; border-color: #fff; box-shadow: 0 0 6px rgba(162,228,245,.6); }
 .wbtn { height: 27px; border-radius: 14px; display: flex; align-items: center; gap: 5px; padding: 0 11px; font-size: 11.5px; font-weight: 600; cursor: pointer; }
 .wbtn svg { width: 13px; height: 13px; }
@@ -392,12 +444,12 @@ svg.ctl:hover { transform: translate(-50%, -50%) scale(1.15); }
   background: rgba(255,183,197,.15); border: 1px solid rgba(255,183,197,.3);
   color: #FFB7C5; font-size: 10px; font-weight: 700;
   display: none; align-items: center; gap: 4px; cursor: pointer; z-index: 25;
-  transition: background .2s;
+  transition:  .2s;
 }
 .sh-clear:hover { background: rgba(255,100,120,.35); color: #fff; }
 .sh-clear svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2.2; }
 
-.zone { left: 44px; top: 34px; width: 332px; height: 86px; border-radius: 16px; border: 1.4px dashed rgba(226,209,249,.28); background: rgba(255,255,255,.03); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: border-color .2s, background .2s; }
+.zone { left: 44px; top: 34px; width: 332px; height: 86px; border-radius: 16px; border: 1.4px dashed rgba(226,209,249,.28); background: rgba(255,255,255,.03); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: border-color .2s,  .2s; }
 .zone.dragover { border-color: var(--c1); background: rgba(255,183,197,.1); }
 .shelf-items { left: 44px; top: 34px; width: 332px; height: 86px; display: none; gap: 8px; align-items: center; overflow-x: auto; padding: 4px 6px; }
 .shelf-items::-webkit-scrollbar { height: 3px; }
@@ -406,7 +458,7 @@ svg.ctl:hover { transform: translate(-50%, -50%) scale(1.15); }
   width: 74px; height: 74px; border-radius: 12px; background: rgba(255,255,255,.08);
   border: 1px solid rgba(255,255,255,.12); display: flex; flex-direction: column;
   align-items: center; justify-content: center; padding: 6px; position: relative;
-  cursor: grab; flex-shrink: 0; transition: transform .15s, background .15s;
+  cursor: grab; flex-shrink: 0; transition: transform .15s,  .15s;
 }
 .sh-card:hover { background: rgba(255,255,255,.16); transform: translateY(-2px); }
 .sh-card svg.f-ico { width: 24px; height: 24px; stroke: var(--c1); fill: none; stroke-width: 1.8; margin-bottom: 5px; pointer-events: none; }
@@ -421,11 +473,11 @@ svg.ctl:hover { transform: translate(-50%, -50%) scale(1.15); }
 .tlist::-webkit-scrollbar-thumb { background: rgba(255,255,255,.3); border-radius: 2px; }
 .trow { height: 26px; border-radius: 8px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: space-between; padding: 0 8px; font-size: 11.5px; cursor: pointer; flex-shrink: 0; }
 .trow-left { display: flex; align-items: center; gap: 7px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.trow.done { background: rgba(40,120,60,.35); color: rgba(255,255,255,.6); text-decoration: line-through; }
+.trow\.done { background: rgba(40,120,60,.35); color: rgba(255,255,255,.6); text-decoration: line-through; }
 .chk { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.5); display: grid; place-items: center; flex: none; }
-.trow.done .chk { background: #2fd06b; border-color: #2fd06b; }
+.trow\.done .chk { background: #2fd06b; border-color: #2fd06b; }
 .chk svg { width: 8px; height: 8px; stroke: #fff; stroke-width: 2.8; fill: none; opacity: 0; }
-.trow.done .chk svg { opacity: 1; }
+.trow\.done .chk svg { opacity: 1; }
 .tdel { width: 16px; height: 16px; display: grid; place-items: center; opacity: .65; }
 .tdel:hover { opacity: 1; }
 .tdel svg { width: 10px; height: 10px; stroke: #ff7b7b; stroke-width: 2.2; }
@@ -500,9 +552,6 @@ svg.ctl:hover { transform: translate(-50%, -50%) scale(1.15); }
   .nav-links { display: none; }
 }
 
-/* Tambahan untuk layar HP (Responsive Navbar & Buttons) */
-/* Pengecilan skala bertahap untuk Tablet/Layar Sedang */
-/* Pengecilan skala khusus untuk Notch beserta isinya di layar sedang/Tablet */
 @media (max-width: 650px) {
   .mn {
     transform: scale(0.75);
@@ -510,53 +559,47 @@ svg.ctl:hover { transform: translate(-50%, -50%) scale(1.15); }
   }
 }
 
-/* Responsif Layar HP (Navbar, Hero, Simulator, dan FIX Isi Notch) */
 @media (max-width: 500px) {
   .navbar { padding: 0 12px; margin-top: 10px; }
   .nav-inner { padding: 10px 14px; gap: 8px; }
-  
+
   .brand { gap: 8px; }
   .brand-logo { width: 30px; height: 30px; }
   .brand-name { font-size: 14px; }
   .brand-jp { display: none; }
-  
+
   .nav-actions { gap: 6px; }
   .btn-primary, .btn-ghost { padding: 7px 10px; font-size: 11.5px; }
   .btn-primary svg, .btn-ghost svg { width: 13px; height: 13px; }
-  
+
   .hero-cta { flex-direction: column; width: 100%; }
   .hero-cta a { width: 100%; justify-content: center; }
-  
+
   .hero-title { font-size: 28px; }
   .dl-card h2 { font-size: 22px; }
 
-  /* --- FIX ISI NOTCH AGAR TIDAK TERPOTONG --- */
   .monitor-frame {
     height: 240px;
     border-radius: 16px;
   }
-  
-  /* Mengecilkan elemen inti (.mn) beserta 100% isinya ke tengah */
+
   .mn {
     transform: scale(0.55); 
     transform-origin: top center;
   }
 
-  /* Rapikan tata letak tombol mode simulator */
   .sim-modes { justify-content: center; }
   .mode-btn { padding: 6px 10px; font-size: 11px; flex-grow: 1; text-align: center; }
 
-  /* Susun dropdown vertikal memanjang */
   .sim-customizers { flex-direction: column; align-items: stretch; gap: 8px; }
   .custom-select .cs-header { justify-content: space-between; }
   .prox-toggle-btn { margin-left: 0; justify-content: center; }
   .fake-tab:nth-child(2) { display: none; }
 }
 
-/* Khusus untuk HP dengan layar sangat sempit (misal iPhone lama, lebar < 380px) */
 @media (max-width: 380px) {
   .mn {
-    transform: scale(0.46); /* Skala di-press lagi agar mode Lyrics (520px) muat */
+    transform: scale(0.46);
     transform-origin: top center;
   }
   .monitor-frame {
@@ -564,7 +607,6 @@ svg.ctl:hover { transform: translate(-50%, -50%) scale(1.15); }
   }
 }
 
-/* Ganti blok `.pill-badge` lama ini: */
 .tech-tag {
   display: inline-block;
   font-family: 'Courier New', Courier, monospace;
@@ -584,7 +626,6 @@ svg.ctl:hover { transform: translate(-50%, -50%) scale(1.15); }
   margin-right: 6px;
 }
 
-/* HAPUS block .sim-select bawaan lama, dan ganti jadi Custom Select Dropdown: */
 .custom-select {
   position: relative;
   user-select: none;
@@ -638,7 +679,7 @@ svg.ctl:hover { transform: translate(-50%, -50%) scale(1.15); }
   padding: 9px 12px;
   cursor: pointer;
   color: var(--mist);
-  transition: background 0.15s, color 0.15s;
+  transition:  0.15s, color 0.15s;
 }
 .cs-opt:hover { 
   background: rgba(255, 183, 197, 0.1); 
